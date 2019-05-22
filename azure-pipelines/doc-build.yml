@@ -76,11 +76,18 @@ jobs:
         git lfs uninstall
     displayName: 'LFS uninstall'
 
+
   - bash: |
         source activate tardis
-        ls doc/_build/html/_images
-    displayName: 'List images'
+        pip install doctr 
+    displayName: 'Install doctr'
 
+  - bash: |
+        source activate tardis
+        doctr deploy --built-docs docs/_build/html . --force
+    displayName: 'Deploy'
+
+    
 #  - task: PublishTestResults@2
 #    condition: succeededOrFailed()
 #    inputs:
