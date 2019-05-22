@@ -17,6 +17,8 @@ variables:
   ref.data.github.url: 'https://github.com/tardis-sn/tardis-refdata.git'
   tardis.build.dir: $(Build.Repository.LocalPath)
 
+  travis.repo.slug: 'tardis-sn/tardis'
+
 
 
 jobs:
