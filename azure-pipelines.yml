@@ -5,7 +5,6 @@
 
 
 trigger:
-- pipeline
 - master
 
 variables:
