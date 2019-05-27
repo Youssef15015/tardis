@@ -101,7 +101,6 @@ jobs:
         source activate tardis
         doctr deploy --built-docs docs/_build/html . --force
     displayName: 'Deploy'
-
     
 #  - task: PublishTestResults@2
 #    condition: succeededOrFailed()
