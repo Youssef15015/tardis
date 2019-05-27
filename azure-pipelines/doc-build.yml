@@ -47,7 +47,7 @@ jobs:
     hostName: 
     sshPublicKey: 
     #sshPassphrase: # Optional
-    sshKeySecureFile: "github_deploy_key_youssef15015_tardis.enc"
+    sshKeySecureFile:
 
 
   - bash: |
