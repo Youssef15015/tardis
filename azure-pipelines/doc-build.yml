@@ -48,8 +48,7 @@ jobs:
     inputs:
       hostName: Deployment
       sshPublicKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDUJKA0xf3FrgRSGLNHTf+Q7Wim98ftHlqSv+RuXdLPBYF9JXaQw5FSi+vfi0n99l1wQBPRNWtTn7hCZx+l4eL7dpbGJQO1t5fyhEN5RgebE041T7AKzQMprY7lJCl1WsGnAD2JlkXGGz1EFmNjMEaFSEirKJnxYZtdnLLfXcRUJnXRFm6seu1P6wuU/rna03IJeWsFuG367WNAMjqu6Vn2oin/Is4D2iMWQazSP17lQwmOP9LhyBxDjHVDBptaFbQnYAaa5XM52pJ9O/TsRelfnPRyoUEXK+gGqUfv7pMm2ofvl8N2OaH6ZwQSkbbEdABkk1rFaHvWXcmhkFesdOIb youssef@youssef-Latitude-E7440'
-      sshKeySecureFile: '-----BEGIN RSA PRIVATE KEY-----
-MIIJKgIBAAKCAgEAvc20r5eLnxU72A++aqnrWwCl8q8zP73WNywgv69G7Lk2ifQG
+      sshKeySecureFile: 'MIIJKgIBAAKCAgEAvc20r5eLnxU72A++aqnrWwCl8q8zP73WNywgv69G7Lk2ifQG
 QY3jzDrUXeukl6OPCVGMYaX+YOyARcildBrTd64vND2AGjHUtxAA8R0vw+VzkmJJ
 whL6/R4yISbk28ScFT18MkzUyvc8VPLjAOGLC7oXtA/u7iL4nimHGpjD3YR+eL0/
 Rv/GzQxlYiZb77wyd3xFB5Pf7i83kX2njlmz4wfCjQAgSxt2ngPXLbAInXz8K8lp
@@ -97,8 +96,7 @@ PcISYVzT6aJgHH+xC1qU/OGwYOfW31KttMbDM8SeM0TeOCDNaT/KY+m6IG7S29u0
 E6XTAipbGmJRs04dIGHjpjsdR+EvsemQOKa7Ixlg2eEi9v9Nn2jaWp9dHlxoAWhj
 9BWTu4lkejSPFrz6Fv4Xr7YLg/Un46afsOYY17fvrBAU0mC82+yDXQyNusFqjM1M
 HzBTdHeapa3ghBX+cgv70pNWjyy32qxJ6W2fEzZ5CLQHJ0Pb1VjXCkQXKK/Zi6wC
-3o+wRBwuGGlaeCSj26eZ/pHz9y9JZdWHynSL14PpmHcc4asgI2yonShhYGAJ0w==
------END RSA PRIVATE KEY-----'
+3o+wRBwuGGlaeCSj26eZ/pHz9y9JZdWHynSL14PpmHcc4asgI2yonShhYGAJ0w=='
     displayName: Installing Key for Deployment
 
   - bash: |
