@@ -44,7 +44,8 @@ jobs:
     inputs:
       hostName:
       sshPublicKey: 
-      sshKeySecureFile:github_deploy_key_youssef15015_tardis.enc
+      sshKeySecureFile:"github_deploy_key_youssef15015_tardis.enc"
+
 
   - bash: |
           echo "##vso[task.prependpath]$CONDA/bin"
