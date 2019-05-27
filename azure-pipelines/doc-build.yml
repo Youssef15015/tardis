@@ -5,10 +5,10 @@
 
 
 trigger:
--master
+- master
 
 pr:
--master
+- master
 
 variables:
   system.debug: 'true'
