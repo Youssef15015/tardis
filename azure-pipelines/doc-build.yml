@@ -46,9 +46,9 @@ jobs:
     displayName: InstallSSHKey
     inputs:
       hostName: 
-     sshPublicKey: id_doc.pub
-     #sshPassphrase: # Optional
-     sshKeySecureFile: 
+      sshPublicKey: id_doc.pub
+      #sshPassphrase: # Optional
+      sshKeySecureFile: 
 
 
   - bash: |
