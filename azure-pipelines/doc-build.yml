@@ -14,10 +14,10 @@ variables:
   system.debug: 'true'
   ref.data.home: '$(Agent.BuildDirectory)/tardis-refdata'
 
-  ref.data.github.url: 'https://github.com/tardis-sn/tardis-refdata.git'
+  ref.data.github.url: 'https://github.com/Youssef15015/tardis-refdata.git'
   tardis.build.dir: $(Build.Repository.LocalPath)
 
-  travis.repo.slug: 'tardis-sn/tardis'
+  travis.repo.slug: 'Youssef15015/tardis'
 
 
 
