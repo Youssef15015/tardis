@@ -43,6 +43,7 @@ jobs:
 # Install SSH Key
 # Install an SSH key prior to a build or release
 - task: InstallSSHKey@0
+  displayName: InstallSSHKey
   inputs:
     hostName: 
     sshPublicKey: id_doc.pub
