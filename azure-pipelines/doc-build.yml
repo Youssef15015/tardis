@@ -32,9 +32,6 @@ jobs:
       linux:
         vm_Image: 'Ubuntu-16.04'
         conda: '/usr/share/miniconda'
-      mac:
-        vm_Image: 'macOS-10.13'
-        miniconda.url: 'http://repo.continuum.io/miniconda/Miniconda2-latest-mac-x86_64.sh'
     maxParallel: 4
 
   steps:
