@@ -43,7 +43,7 @@ jobs:
   - task:InstallSSHKey@0
     inputs:
       hostName:
-      sshPublicKey: "h+KzB5iM24j1uELkWuH9VFwmh46KxbrgMV1GsGbLEaFNX/pT125V8nnmrVN18sZqWqh/oNhlhKwqvNkIkgXCtkDdbsb7h81Y0jzMop7c9AbL1cB+noL9sbnGiYBgbxQgVfeuiJPcS6tjEsySnoxRnbGmdk39qWG/PO27UGNQocTY9KaKMZkTMSQAZuA5lYYi9ojrWgAWMacCvzz7491yHcu2x1mlEyp2RuxkQxAmToA1KEnE5qKuDqx05TmOphKrwGg2jk2jIp8H0A6cpFilXOdJQdNfYmi6kMHRpQr2GU64XdlWOl48Jbnkkqbx5SNpkI/z8wQYzZQbGJsoDFI7Nf+zaorljPBebut2oBGorIr8DM+iTNlzKWr5tkuOoONAijo1OJrJ8trterUgBiphbUwCyoe8meHwVqQ3gvtlMrGlavFt7GlBFxLQ558bJlqQwnQ6YxJeieJBqqa0Lsx3w1JeDCu6GKJqgtfD416+YnjjVHPvGLmPbJqu/S6HWeMKIvupYitHLIhs6+jZ7oMQMeRf1b4amDZ+S2Gl+wIRbubL7Qf2Y1KMfFHtWvyUc6BgIEfwNlbwTF9Jwvg4nw2TKwUBwPF7wovV0TkAzzy+6G6gER1315PxO9DEjeuy2KkzIfjqyNcbhqiVlOGIu00G+cZr/EucXKDmNkJ3Et6a/3E="
+      sshPublicKey: 
       sshKeySecureFile:github_deploy_key_youssef15015_tardis.enc
 
   - bash: |
