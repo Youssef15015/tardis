@@ -40,11 +40,14 @@ jobs:
 
   steps:
 
-  - task: InstallSSHKey@0
-    inputs:
-      hostName:
-      sshPublicKey: 
-      sshKeySecureFile:"github_deploy_key_youssef15015_tardis.enc"
+# Install SSH Key
+# Install an SSH key prior to a build or release
+- task: InstallSSHKey@0
+  inputs:
+    hostName: 
+    sshPublicKey: 
+    #sshPassphrase: # Optional
+    sshKeySecureFile: "github_deploy_key_youssef15015_tardis.enc"
 
 
   - bash: |
