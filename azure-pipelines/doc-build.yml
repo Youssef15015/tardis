@@ -44,12 +44,12 @@ jobs:
 # Install an SSH key prior to a build or release
 # Azure Key Vault
 # Download Azure Key Vault Secrets
-#  - task: InstallSSHKey@0
-#    inputs:
-#      hostName: Deployment
-#      sshPublicKey: /LocalPath/home/Youssef15015/
-#      sshKeySecureFile: 
-#    displayName:  Installing Key for Deployment
+  - task: InstallSSHKey@0
+    inputs:
+      hostName: Deployment
+      sshPublicKey:
+      sshKeySecureFile: "qAaEYYT+KCg9ItgWLgv+6qEeij+v/7bx+Y9K7i/9N9zkvdCtjwE0330OCL9psnFFRuUqSXEH2vuf0IgmUTMlHUVt0VF1eZE5zSqtg8bsKx6YnsdLQhZ8NKW69RpdG/eyKIwaSYwiTX+qZmTaUR2KIWKSTHcNjxtfmYY1TASH5xT//KOrTsBhdZpKlqJNOu5aqcsDA8/SGIiG7eMHq+2HlYlCpdZb17v25HI3SvLIn9Aws+SBQuEQ7Opp2IgyGzOFhkJWPhgm33OJF36eKAMXSqACThgeg6gbJU2a0pMiHSyR80692ZK8FVGk1lDZJNwlou7xw4cR0XvdBptvrldvCA6Yb1685Em22s2+QMxQFLnHxEtr8syJiIMkGqnnS3BXiNgJf3+BfsnOW+iA6tCkCPreLX/0pJZCGVUIaYdKbFWRmjHmNt8eLaHT4ZlG6qywGtjWcaXdRyQd+NMPGxJa+Z7/EGZGHARRGyEwf1Et68rd3RjSDC+KiS7S5A3q3BJYeUokvEIhl8SADwrUwj1VnM+CErsjdQ/BgbQHOZ+ctM7EjjTp1qhuUSuF1MMCzX4i/myQZcaHOMygUziBiywdwGBvoAd0NXux5OnGpGH6IFa1MNv1l3I8xUmatDmbYxGK4bTvmkTbtyEGGlcX+1FDpwoCha/pUymOyM6YobfYcVc="
+    displayName:  Installing Key for Deployment
 
   - bash: |
           echo "##vso[task.prependpath]$CONDA/bin"
