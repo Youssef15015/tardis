@@ -124,7 +124,7 @@ class LevelBoltzmannFactorNLTE(ProcessingPlasmaProperty):
     def _main_nlte_calculation(
             self, atomic_data, nlte_data, t_electrons,
             j_blues, beta_sobolevs, general_level_boltzmann_factor,
-            previous_electron_densities):
+            previous_electron_densities, g):
         """
         The core of the NLTE calculation, used with all possible config.
         options.
@@ -189,8 +189,13 @@ class LevelBoltzmannFactorNLTE(ProcessingPlasmaProperty):
                                 'collision data?')
                     else:
                         raise e
+<<<<<<< HEAD
                 general_level_boltzmann_factor[i].loc[species] = \
                     level_boltzmann_factor
+=======
+                general_level_boltzmann_factor[i].ix[species] = \
+                    level_boltzmann_factor * g[species][0] / level_boltzmann_factor[0]
+>>>>>>> 68bd014e... Fix NLTE Normalization - issue #784
         return general_level_boltzmann_factor
 
     def _calculate_classical_nebular(
@@ -232,7 +237,7 @@ class LevelBoltzmannFactorNLTE(ProcessingPlasmaProperty):
     def _calculate_general(
             self, t_electrons, lines, atomic_data, nlte_data,
             general_level_boltzmann_factor, j_blues,
-            previous_beta_sobolev, previous_electron_densities):
+            previous_beta_sobolev, previous_electron_densities, g):
         """
         Full NLTE calculation without approximations.
         """
@@ -244,7 +249,7 @@ class LevelBoltzmannFactorNLTE(ProcessingPlasmaProperty):
         general_level_boltzmann_factor = self._main_nlte_calculation(
             atomic_data, nlte_data, t_electrons, j_blues,
             beta_sobolevs, general_level_boltzmann_factor,
-            previous_electron_densities)
+            previous_electron_densities, g)
         return general_level_boltzmann_factor
 
 
