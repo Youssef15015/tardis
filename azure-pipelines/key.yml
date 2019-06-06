@@ -79,10 +79,12 @@ jobs:
           ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
     displayName: Added known host
 
-  - bash: |
-          eval `ssh-agent -s`
-          ssh-add ~/.ssh/id_azure_rsa
-    displayName: add key
+#  - bash: |
+#          if [ -z "$SSH_AUTH_SOCK" ] ; then
+#            eval `ssh-agent -s`
+#            ssh-add ~/.ssh/id_azure_rsa
+#          fi
+#    displayName: add key
 
 
   - bash: |
@@ -90,9 +92,9 @@ jobs:
           git push origin HEAD:gh-pages
     displayName: 'Publish GitHub Pages'
 
-  - bash: |
-          ssh-agent -k
-    displayName: Kill agent
+#  - bash: |
+#          ssh-agent -k
+#    displayName: Kill agent
 
 
 # Install SSH Key
