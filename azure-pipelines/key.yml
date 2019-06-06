@@ -1,10 +1,10 @@
 
 
 trigger:
-- azure
+- key
 
 pr:
-- azure
+- key
 
 variables:
   system.debug: 'true'
@@ -33,11 +33,6 @@ jobs:
         conda: '/usr/share/miniconda'
     maxParallel: 4
 
-  steps:
-
-  - bash: |
-          ls
-    displayName: Check for secure files
 
 
 
@@ -53,26 +48,8 @@ jobs:
       secureFile: 'id_azure_rsa.pub'
 
   - bash: |
-          ls $(Agent.TempDirectory)
+        ls $(Agent.TempDirectory)
     displayName: Check for downloaded secure files
-
-
-  - bash: |
-          echo "##vso[task.prependpath]$CONDA/bin"
-    displayName: Add conda to PATH
-
-  - bash: |
-      sudo chown -R $USER $CONDA
-      conda update -y conda
-    displayName: updating conda and activating
-
-  - bash: |
-        sh ci-helpers/install_tardis_env.sh
-    displayName: 'Install TARDIS env'
-
-  - bash: |
-        sh ci-helpers/fetch_reference_data.sh
-    displayName: 'Fetch Reference Data'
 
 
 # Install SSH Key
@@ -83,22 +60,3 @@ jobs:
      sshPublicKey: 'id_azure_rsa.pub' 
      #sshPassphrase: # Optional $(Agent.TempDirectory)
      sshKeySecureFile: 'id_azure_rsa'
-
-  - bash: |
-        source activate tardis
-        ./deploy_docs.sh
-    displayName: 'TARDIS build'
-
-
-
-#  - task: PublishTestResults@2
-#    condition: succeededOrFailed()
-#    inputs:
-#      testResultsFiles: '**/test-*.xml'
-#      testRunTitle: 'Test results for TARDIS on $(vm_Image)'
-
-#  - task: PublishCodeCoverageResults@1
-#    inputs:
-#      codeCoverageTool: Cobertura
-#      summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/coverage.xml'
-#      reportDirectory: '$(System.DefaultWorkingDirectory)/**/htmlcov'
