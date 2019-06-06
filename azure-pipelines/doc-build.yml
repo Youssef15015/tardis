@@ -50,7 +50,7 @@ jobs:
 
   - task: DownloadSecureFile@1
     inputs: 
-      secureFile: 'id_azure_rsa.pub'
+      secureFile: 'id_azure_rsa.pem'
 
   - bash: |
           ls $(Agent.TempDirectory)
@@ -80,7 +80,7 @@ jobs:
   - task: InstallSSHKey@0
     inputs:
      hostName: knownHostsEntry
-     sshPublicKey: 'id_azure_rsa.pub' 
+     sshPublicKey: 'id_azure_rsa.pem' 
      #sshPassphrase: # Optional $(Agent.TempDirectory)
      sshKeySecureFile: 'id_azure_rsa'
 
