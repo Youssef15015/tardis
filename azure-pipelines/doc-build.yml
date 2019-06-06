@@ -80,9 +80,9 @@ jobs:
   - task: InstallSSHKey@0
     inputs:
      hostName: knownHostsEntry
-     sshPublicKey: 'id_azure_rsa.pub' 
+     sshPublicKey: ' $(Agent.TempDirectory)/id_azure_rsa.pub' 
      #sshPassphrase: # Optional
-     sshKeySecureFile: 'id_azure_rsa'
+     sshKeySecureFile: ' $(Agent.TempDirectory)/id_azure_rsa'
 
   - bash: |
         source activate tardis
