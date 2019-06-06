@@ -1,0 +1,104 @@
+
+
+trigger:
+- azure
+
+pr:
+- azure
+
+variables:
+  system.debug: 'true'
+  ref.data.home: '$(Agent.BuildDirectory)/tardis-refdata'
+
+  ref.data.github.url: 'https://github.com/Youssef15015/tardis-refdata.git'
+  tardis.build.dir: $(Build.Repository.LocalPath)
+
+  travis.repo.slug: 'Youssef15015/tardis'
+
+
+
+jobs:
+
+
+
+- job: 'Test'
+  pool:
+    vmImage: $[variables.vm_Image]
+
+
+  strategy:
+    matrix:
+      linux:
+        vm_Image: 'Ubuntu-16.04'
+        conda: '/usr/share/miniconda'
+    maxParallel: 4
+
+  steps:
+
+  - bash: |
+          ls
+    displayName: Check for secure files
+
+
+
+
+# Download Secure File
+# Download a secure file to a temporary location on the build or release agent
+  - task: DownloadSecureFile@1
+    inputs: 
+      secureFile: 'id_azure_rsa'
+
+  - task: DownloadSecureFile@1
+    inputs: 
+      secureFile: 'id_azure_rsa.pub'
+
+  - bash: |
+          ls $(Agent.TempDirectory)
+    displayName: Check for downloaded secure files
+
+
+  - bash: |
+          echo "##vso[task.prependpath]$CONDA/bin"
+    displayName: Add conda to PATH
+
+  - bash: |
+      sudo chown -R $USER $CONDA
+      conda update -y conda
+    displayName: updating conda and activating
+
+  - bash: |
+        sh ci-helpers/install_tardis_env.sh
+    displayName: 'Install TARDIS env'
+
+  - bash: |
+        sh ci-helpers/fetch_reference_data.sh
+    displayName: 'Fetch Reference Data'
+
+
+# Install SSH Key
+# Install an SSH key prior to a build or release
+  - task: InstallSSHKey@0
+    inputs:
+     hostName: knownHostsEntry
+     sshPublicKey: 'id_azure_rsa.pub' 
+     #sshPassphrase: # Optional $(Agent.TempDirectory)
+     sshKeySecureFile: 'id_azure_rsa'
+
+  - bash: |
+        source activate tardis
+        ./deploy_docs.sh
+    displayName: 'TARDIS build'
+
+
+
+#  - task: PublishTestResults@2
+#    condition: succeededOrFailed()
+#    inputs:
+#      testResultsFiles: '**/test-*.xml'
+#      testRunTitle: 'Test results for TARDIS on $(vm_Image)'
+
+#  - task: PublishCodeCoverageResults@1
+#    inputs:
+#      codeCoverageTool: Cobertura
+#      summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/coverage.xml'
+#      reportDirectory: '$(System.DefaultWorkingDirectory)/**/htmlcov'
