@@ -35,6 +35,13 @@ jobs:
 
   steps:
 
+  - bash: |
+          git config --local user.name "Azure Pipelines"
+          git config --local user.email "azuredevops@microsoft.com"
+          git add .
+          git commit -m "Publishing GitHub Pages  ***NO_CI***"
+    displayName: 'Build and commit pages'
+
 
 # Download Secure File
 # Download a secure file to a temporary location on the build or release agent
@@ -42,20 +49,35 @@ jobs:
     inputs: 
       secureFile: 'id_azure_rsa'
 
-  - task: DownloadSecureFile@1
-    inputs: 
-      secureFile: 'id_azure_rsa.pub'
+#  - task: DownloadSecureFile@1
+#    inputs: 
+#      secureFile: 'id_azure_rsa.pub'
 
   - bash: |
           ls $(Agent.TempDirectory)
     displayName: Check for downloaded secure files
 
 
+  - bash: |
+          mkdir ~/.ssh
+          mv $(Agent.TempDirectory)/id_azure_rsa ~/.ssh/id_azure_rsa
+          chmod 700 ~/.ssh 
+          chmod 600 ~/.ssh/id_azure_rsa
+    displayName: Create ssh directory, move key, and change permissions
+
+
+  - bash: |
+          ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+          git remote set-url --push origin git@github.com:Youssef15015/tardis.git
+          git push origin HEAD:key
+          displayName: 'Publish GitHub Pages'
+
+
 # Install SSH Key
 # Install an SSH key prior to a build or release
-  - task: InstallSSHKey@0
-    inputs:
-     knownHostsEntry: "|1|ViGvJeAsz1LySgGpwY298Vs0r0o=|1FYXYXT4xW+41wS7qWLTBh673PE= ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ=="
-     sshPublicKey: 'id_azure_rsa.pub' 
-     #sshPassphrase: # Optional $(Agent.TempDirectory)
-     sshKeySecureFile: 'id_azure_rsa'
+#  - task: InstallSSHKey@0
+#    inputs:
+#     knownHostsEntry: "|1|ViGvJeAsz1LySgGpwY298Vs0r0o=|1FYXYXT4xW+41wS7qWLTBh673PE= ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ=="
+#     sshPublicKey: 'id_azure_rsa.pub' 
+#     #sshPassphrase: # Optional $(Agent.TempDirectory)
+#     sshKeySecureFile: 'id_azure_rsa'
