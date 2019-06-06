@@ -36,7 +36,19 @@ jobs:
   steps:
 
   - bash: |
-          mkdir @tardis.build.dir/test
+            ls
+    displayName: List current files
+
+  - bash: |
+            mkdir $tardis.build.dir/test
+    displayName: make directory
+
+  - bash: |
+            ls
+    displayName: List files again
+
+
+  - bash: |
           git config --local user.name "Azure Pipelines"
           git config --local user.email "azuredevops@microsoft.com"
           git add .
