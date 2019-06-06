@@ -78,8 +78,9 @@ jobs:
 
   - bash: |
           ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+          ssh-add ~/.ssh/id_azure_rsa
           git remote set-url --push origin git@github.com:Youssef15015/tardis.git
-          git push origin HEAD:key
+          git push origin HEAD:gh-pages
           displayName: 'Publish GitHub Pages'
 
 
