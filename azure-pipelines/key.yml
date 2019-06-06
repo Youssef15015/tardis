@@ -20,7 +20,6 @@ variables:
 jobs:
 
 
-
 - job: 'Test'
   pool:
     vmImage: $[variables.vm_Image]
@@ -34,7 +33,7 @@ jobs:
     maxParallel: 4
 
 
-
+  steps:
 
 
 # Download Secure File
@@ -48,7 +47,7 @@ jobs:
       secureFile: 'id_azure_rsa.pub'
 
   - bash: |
-        ls $(Agent.TempDirectory)
+          ls $(Agent.TempDirectory)
     displayName: Check for downloaded secure files
 
 
