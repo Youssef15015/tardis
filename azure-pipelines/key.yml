@@ -40,7 +40,7 @@ jobs:
     displayName: List current files
 
   - bash: |
-            mkdir $tardis.build.dir/test
+            mkdir test
     displayName: make directory
 
   - bash: |
