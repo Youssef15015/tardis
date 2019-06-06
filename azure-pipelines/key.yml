@@ -40,12 +40,9 @@ jobs:
     displayName: List current files
 
   - bash: |
-            mkdir test
-    displayName: make directory
+            chmod 777 deploy_docs.sh
+    displayName: Change permissions of random file
 
-  - bash: |
-            ls
-    displayName: List files again
 
 
   - bash: |
