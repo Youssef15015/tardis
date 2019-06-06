@@ -80,7 +80,7 @@ jobs:
     displayName: Added known host
 
   - bash: |
-          ssh-agent -s
+          eval `ssh-agent -s`
           ssh-add ~/.ssh/id_azure_rsa
     displayName: add key
 
