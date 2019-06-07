@@ -84,7 +84,7 @@ jobs:
      knownHostsEntry: "140.82.118.3"
      sshPublicKey: $public_key
 #     #sshPassphrase: # Optional $(Agent.TempDirectory)
-     sshKeySecureFile: $private_key
+     sshKeySecureFile: 'id_azure_rsa'
 
 #  - bash: |
 #          if [ -z "$SSH_AUTH_SOCK" ] ; then
