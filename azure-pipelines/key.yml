@@ -77,7 +77,7 @@ jobs:
 
 
   - bash: |
-          print($(test)
+          print($(test))
     displayName: Check that encrypted variables work
 
 
