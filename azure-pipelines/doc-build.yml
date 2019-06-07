@@ -60,24 +60,27 @@ jobs:
 
   - bash: |
           echo "##vso[task.prependpath]$CONDA/bin"
+          ls
     displayName: Add conda to PATH
 
   - bash: |
       sudo chown -R $USER $CONDA
       conda update -y conda
+      ls
     displayName: updating conda and activating
 
   - bash: |
         sh ci-helpers/install_tardis_env.sh
+        ls
     displayName: 'Install TARDIS env'
 
   - bash: |
         sh ci-helpers/fetch_reference_data.sh
+        ls
     displayName: 'Fetch Reference Data'
 
 
   - bash: |
-        ls
         source activate tardis
         source deploy_docs.sh
     displayName: 'TARDIS build and deployment to gh-pages'
