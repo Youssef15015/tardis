@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e # Exit with nonzero exit code if anything fails
+#set -e # Exit with nonzero exit code if anything fails
 
 # Build the documentation from the SOURCE_BRANCH
 # and push it to TARGET_BRANCH.
@@ -22,7 +22,7 @@ SHA=`git rev-parse --verify HEAD`
 #chmod 600 ../id_tardis_rsa
 #if [ -z "$SSH_AUTH_SOCK" ] ; then
 #  eval `ssh-agent -s`
-#  ssh-add <(echo "$DOCS_DEPLOY_KEY")
+#  ssh-add ~/.ssh/id_azure_rsa
 #fi
 
 
@@ -62,8 +62,8 @@ touch out/.nojekyll
 
 # Now let's go have some fun with the cloned repo
 cd out
-git config user.name "Travis CI"
-git config user.email "$COMMIT_AUTHOR_EMAIL"
+git config --local user.name "Azure Pipelines"
+git config --local user.email "azuredevops@microsoft.com"
 
 echo "doing git add/commit/push"
 
@@ -72,10 +72,10 @@ echo "doing git add/commit/push"
 git add --all
 
 # Exit if there are no docs changes
-if git diff --staged --quiet; then
-   echo "exiting with no docs changes"
-   exit 0
-fi
+#if git diff --staged --quiet; then
+#   echo "exiting with no docs changes"
+#   exit 0
+#fi
 
 # Otherwise, commit and push
 git commit -m "Deploy to GitHub Pages: ${SHA}"
@@ -83,4 +83,4 @@ git push $SSH_REPO $TARGET_BRANCH
 cd ..
 
 # Kill the ssh-agent
-ssh-agent -k
+#ssh-agent -k
