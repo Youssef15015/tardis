@@ -83,4 +83,4 @@ git push $SSH_REPO $TARGET_BRANCH
 cd ..
 
 # Kill the ssh-agent
-ssh-agent -k
+#ssh-agent -k
