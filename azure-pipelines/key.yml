@@ -57,11 +57,8 @@ jobs:
 # Download a secure file to a temporary location on the build or release agent
   - task: DownloadSecureFile@1
     inputs: 
-      secureFile: 'id_azure_rsa'
+      secureFile: 'id_tardis_rsa'
 
-#  - task: DownloadSecureFile@1
-#    inputs: 
-#      secureFile: 'id_azure_rsa.pub'
 
   - bash: |
           ls $(Agent.TempDirectory)
@@ -75,9 +72,9 @@ jobs:
   - task: InstallSSHKey@0
     inputs:
      knownHostsEntry: "140.82.118.3"
-     sshPublicKey: $(public_key)
+     sshPublicKey: $(id_tardis_rsa_pub)
      #sshPassphrase: # Optional $(Agent.TempDirectory)
-     sshKeySecureFile: 'id_azure_rsa'
+     sshKeySecureFile: 'id_tardis_rsa'
 
 #  - bash: |
 #          if [ -z "$SSH_AUTH_SOCK" ] ; then
