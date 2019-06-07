@@ -54,7 +54,9 @@ jobs:
      #sshPassphrase: # Optional $(Agent.TempDirectory)
      sshKeySecureFile: 'id_azure_rsa'
 
-
+  - bash: |
+          ls
+    displayName: Display repository files
 
   - bash: |
           echo "##vso[task.prependpath]$CONDA/bin"
@@ -74,12 +76,10 @@ jobs:
     displayName: 'Fetch Reference Data'
 
 
-
-
   - bash: |
         source activate tardis
         bash deploy_docs.sh
-    displayName: 'TARDIS build'
+    displayName: 'TARDIS build and deployment to gh-pages'
 
 
 
