@@ -65,18 +65,16 @@ jobs:
     displayName: Check for downloaded secure files
 
 
-  - bash |
-          $(id_tardis_rsa_pub)
-    displayName: Check for enc variable
+
 
 # Install SSH Key
 # Install an SSH key prior to a build or release
-#  - task: InstallSSHKey@0
-#    inputs:
-#     knownHostsEntry: "140.82.118.3"
-#     sshPublicKey: $(id_tardis_rsa_pub)
-#     #sshPassphrase: # Optional $(Agent.TempDirectory)
-#     sshKeySecureFile: 'id_tardis_rsa'
+  - task: InstallSSHKey@0
+    inputs:
+     knownHostsEntry: "140.82.118.3"
+     sshPublicKey: $(id_tardis_rsa_pub)
+     #sshPassphrase: # Optional $(Agent.TempDirectory)
+     sshKeySecureFile: 'id_tardis_rsa'
 
 #  - bash: |
 #          if [ -z "$SSH_AUTH_SOCK" ] ; then
