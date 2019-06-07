@@ -39,10 +39,10 @@ jobs:
             ls
     displayName: List current files
 
+
   - bash: |
             chmod 777 deploy_docs.sh
     displayName: Change permissions of random file
-
 
 
   - bash: |
@@ -88,8 +88,12 @@ jobs:
 #    displayName: Added known host
 
   - bash: |
-          git checkout gh-pages || git checkout --orphan gh-pages
-          git push git@github.com:Youssef15015/tardis.git gh-pages
+          git checkout key || git checkout --orphan key
+    displayName: Checkout branch
+
+
+  - bash: |
+          git push git@github.com:Youssef15015/tardis.git key
     displayName: 'Publish GitHub Pages'
 
 
