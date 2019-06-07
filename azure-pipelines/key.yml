@@ -77,8 +77,8 @@ jobs:
 
 
   - bash: |
-          print(len($public_key))
-    displayName: Check that public key variable works
+          print($test)
+    displayName: Check that encrypted variables work
 
 
 # Install SSH Key
