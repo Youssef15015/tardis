@@ -1,11 +1,13 @@
-
-
+## Specify which branches you want to trigger for continous deployment and/or applicable for pull requests.
+## If nothing is selected, all branches are
 trigger:
 - azure
 
 pr:
 - azure
 
+
+# Variable we can refernece later
 variables:
   system.debug: 'true'
   ref.data.home: '$(Agent.BuildDirectory)/tardis-refdata'
@@ -25,7 +27,7 @@ jobs:
   pool:
     vmImage: $[variables.vm_Image]
 
-
+#### Basic setup of our virtual machine(vm)
   strategy:
     matrix:
       linux:
@@ -37,16 +39,20 @@ jobs:
 
 
 
+#First generate ssh key and add to github as a deploy key to forked_repo_home/settings/deploy_key
 
-
-# Download Secure File
+# Secure files stored in the azure server are encryped and again decrypted by the azure task that uses the file
 # Download a secure file to a temporary location on the build or release agent
   - task: DownloadSecureFile@1
     inputs: 
       secureFile: 'id_azure_rsa'
 
-# Install SSH Key
-# Install an SSH key prior to a build or release
+#Install an SSH key prior to a build or release
+#This is needed to give azure access to deploy to github
+#hostName is the line that was added to ~/.ssh/known_hosts when you added the RSA host key. (Output of ssh-keyscan, should look something like [1]As3..=ssh-rsa ..)
+#sshPublicKey should be a string value of what is inside your .pub file (i.e: rsa-key Axddd... username@server)
+#sshKey is the download secure file you generated.
+
   - task: InstallSSHKey@0
     inputs:
      hostName: $(gh_host)
@@ -80,6 +86,8 @@ jobs:
     displayName: 'Fetch Reference Data'
 
 
+
+### See github.com/Youssef15015/tardis for docuemntation.
   - bash: |
         source activate tardis
         bash deploy_docs.sh
