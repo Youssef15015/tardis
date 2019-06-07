@@ -5,7 +5,7 @@
 
 
 trigger:
-- master
+- TEST
 
 variables:
   system.debug: 'true'
@@ -13,7 +13,7 @@ variables:
 
   ref.data.github.url: 'https://github.com/tardis-sn/tardis-refdata.git'
   tardis.build.dir: $(Build.Repository.LocalPath)
-
+  travis.repo.slug: 'Youssef15015/tardis'
 
 
 jobs:
@@ -34,33 +34,12 @@ jobs:
 
   steps:
   - bash: |
-          echo "##vso[task.prependpath]$CONDA/bin"
-    displayName: Add conda to PATH
+          ls
+          ./deploy_docs.sh
+    displayName: Run shell file
 
-  - bash: |
-      sudo chown -R $USER $CONDA
-      conda update -y conda
-    displayName: updating conda and activating
 
-  - bash: |
-        sh ci-helpers/install_tardis_env.sh
-    displayName: 'Install TARDIS env'
 
-  - bash: |
-        sh ci-helpers/fetch_reference_data.sh
-    displayName: 'Fetch Reference Data'
-
-  - bash: |
-        source activate tardis
-        python setup.py build_ext --inplace
-    displayName: 'TARDIS build'
-
-  - bash: |
-        source activate tardis
-        conda install -y pytest-cov
-        pip install git+https://github.com/tonybaloney/pytest-azurepipelines.git
-        pytest tardis --tardis-refdata=$(ref.data.home) --test-run-title="TARDIS test $(vm_Image)" --cov=tardis --cov-report=xml --cov-report=html
-    displayName: 'TARDIS test'
 
 
 #  - task: PublishTestResults@2
