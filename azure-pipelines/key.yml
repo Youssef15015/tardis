@@ -71,10 +71,8 @@ jobs:
   - bash: |
           mkdir ~/.ssh
           mv $(Agent.TempDirectory)/id_azure_rsa ~/.ssh/id_azure_rsa
-          mv $(Agent.TempDirectory)/id_azure_rsa.pub ~/.ssh/id_azure_rsa.pub
           chmod 700 ~/.ssh 
           chmod 600 ~/.ssh/id_azure_rsa
-          chmod 600 ~/.ssh/id_azure_rsa.pub
     displayName: Create ssh directory, move key, and change permissions
 
 
