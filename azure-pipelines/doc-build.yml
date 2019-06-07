@@ -45,6 +45,15 @@ jobs:
     inputs: 
       secureFile: 'id_azure_rsa'
 
+# Install SSH Key
+# Install an SSH key prior to a build or release
+  - task: InstallSSHKey@0
+    inputs:
+     hostName: $(gh_host)
+     sshPublicKey: $(public_key)
+     #sshPassphrase: # Optional $(Agent.TempDirectory)
+     sshKeySecureFile: 'id_azure_rsa'
+
 
 
   - bash: |
@@ -65,14 +74,7 @@ jobs:
     displayName: 'Fetch Reference Data'
 
 
-# Install SSH Key
-# Install an SSH key prior to a build or release
-  - task: InstallSSHKey@0
-    inputs:
-     hostName: $(gh_host)
-     sshPublicKey: $(public_key)
-     #sshPassphrase: # Optional $(Agent.TempDirectory)
-     sshKeySecureFile: 'id_azure_rsa'
+
 
   - bash: |
         source activate tardis
