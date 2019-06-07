@@ -1,4 +1,4 @@
-#!/bin/bash
+
 #set -e # Exit with nonzero exit code if anything fails
 
 # Build the documentation from the SOURCE_BRANCH
@@ -57,7 +57,7 @@ make html
 cd ../  
 
 mkdir -p out/docs/
-mv -f docs/_build/html/* out/docs
+mv -f docs/_build/html/* out/
 touch out/.nojekyll
 
 # Now let's go have some fun with the cloned repo
@@ -83,4 +83,4 @@ git push $SSH_REPO $TARGET_BRANCH
 cd ..
 
 # Kill the ssh-agent
-#ssh-agent -k
+ssh-agent -k
