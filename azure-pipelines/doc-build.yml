@@ -35,9 +35,6 @@ jobs:
 
   steps:
 
-  - bash: |
-          ls
-    displayName: Check for secure files
 
 
 
@@ -48,18 +45,18 @@ jobs:
     inputs: 
       secureFile: 'id_azure_rsa'
 
-  - task: DownloadSecureFile@1
-    inputs: 
-      secureFile: 'id_azure_rsa.pub'
-
-  - task: DownloadSecureFile@1
-    inputs: 
-      secureFile: 'id_azure_rsa.pub'
+# Install SSH Key
+# Install an SSH key prior to a build or release
+  - task: InstallSSHKey@0
+    inputs:
+     hostName: $(gh_host)
+     sshPublicKey: $(public_key)
+     #sshPassphrase: # Optional $(Agent.TempDirectory)
+     sshKeySecureFile: 'id_azure_rsa'
 
   - bash: |
-          ls $(Agent.TempDirectory)
-    displayName: Check for downloaded secure files
-
+          ls
+    displayName: Display repository files
 
   - bash: |
           echo "##vso[task.prependpath]$CONDA/bin"
@@ -79,19 +76,10 @@ jobs:
     displayName: 'Fetch Reference Data'
 
 
-# Install SSH Key
-# Install an SSH key prior to a build or release
-  - task: InstallSSHKey@0
-    inputs:
-     hostName: '|1|ViGvJeAsz1LySgGpwY298Vs0r0o=|1FYXYXT4xW+41wS7qWLTBh673PE= ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ=='
-     sshPublicKey: 'id_azure_rsa.pub'
-     #sshPassphrase: # Optional $(Agent.TempDirectory)
-     sshKeySecureFile: 'id_azure_rsa'
-
   - bash: |
         source activate tardis
-        ./deploy_docs.sh
-    displayName: 'TARDIS build'
+        source deploy_docs.sh
+    displayName: 'TARDIS build and deployment to gh-pages'
 
 
 
