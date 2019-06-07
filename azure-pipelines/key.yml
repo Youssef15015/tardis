@@ -68,14 +68,6 @@ jobs:
     displayName: Check for downloaded secure files
 
 
-  - bash: |
-          mkdir ~/.ssh
-          mv $(Agent.TempDirectory)/id_azure_rsa ~/.ssh/id_azure_rsa
-          chmod 700 ~/.ssh 
-          chmod 600 ~/.ssh/id_azure_rsa
-    displayName: Create ssh directory, move key, and change permissions
-
-
 
 
 # Install SSH Key
