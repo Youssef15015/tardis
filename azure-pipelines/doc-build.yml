@@ -78,7 +78,7 @@ jobs:
 
   - bash: |
         source activate tardis
-        bash deploy_docs.sh
+        source deploy_docs.sh
     displayName: 'TARDIS build and deployment to gh-pages'
 
 
