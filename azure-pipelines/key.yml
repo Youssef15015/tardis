@@ -82,7 +82,7 @@ jobs:
   - task: InstallSSHKey@0
     inputs:
      knownHostsEntry: "140.82.118.3"
-     sshPublicKey: "~/.ssh/id_azure_rsa.pub" 
+     sshPublicKey: $public_key
 #     #sshPassphrase: # Optional $(Agent.TempDirectory)
      sshKeySecureFile: "id_azure_rsa"
 
