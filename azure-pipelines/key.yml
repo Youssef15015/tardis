@@ -77,21 +77,27 @@ jobs:
           chmod 600 ~/.ssh/id_azure_rsa.pub
     displayName: Create ssh directory, move key, and change permissions
 
+
+  - bash: |
+          print(len($public_key))
+    displayName: Check that public key variable works
+
+
 # Install SSH Key
 # Install an SSH key prior to a build or release
-  - task: InstallSSHKey@0
-    inputs:
-     knownHostsEntry: "140.82.118.3"
-     sshPublicKey: $public_key
+#  - task: InstallSSHKey@0
+#    inputs:
+#     knownHostsEntry: "140.82.118.3"
+#     sshPublicKey: $public_key
 #     #sshPassphrase: # Optional $(Agent.TempDirectory)
-     sshKeySecureFile: 'id_azure_rsa'
+#     sshKeySecureFile: 'id_azure_rsa'
 
-#  - bash: |
-#          if [ -z "$SSH_AUTH_SOCK" ] ; then
-#            eval `ssh-agent -s`
-#            ssh-add ~/.ssh/id_azure_rsa
-#          fi
-#    displayName: add key
+  - bash: |
+          if [ -z "$SSH_AUTH_SOCK" ] ; then
+            eval `ssh-agent -s`
+            ssh-add ~/.ssh/id_azure_rsa
+          fi
+    displayName: add key
 
 #  - bash: |
 #          ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
