@@ -59,9 +59,9 @@ jobs:
     inputs: 
       secureFile: 'id_azure_rsa'
 
-#  - task: DownloadSecureFile@1
-#    inputs: 
-#      secureFile: 'id_azure_rsa.pub'
+  - task: DownloadSecureFile@1
+    inputs: 
+      secureFile: 'id_azure_rsa.pub'
 
   - bash: |
           ls $(Agent.TempDirectory)
