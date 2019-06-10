@@ -46,7 +46,7 @@ git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
 cd ..
 
 # Clean out existing contents
-rm -rf out/docs/**/* || exit 0
+rm -rf out/docs/** || exit 0
 
 # Pull from SOURCE_BRANCH again
 git pull || true
