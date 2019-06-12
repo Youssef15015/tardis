@@ -15,29 +15,16 @@ variables:
   ref.data.github.url: 'https://github.com/Youssef15015/tardis-refdata.git'
   tardis.build.dir: $(Build.Repository.LocalPath)
 
-  travis.repo.slug: 'Youssef15015/tardis'
-
-
-
 jobs:
 
 
 
-- job: 'Test'
+- job: 'Testing Doc-Build on'
   pool:
     vmImage: $[variables.vm_Image]
 
-#### Basic setup of our virtual machine(vm)
-  strategy:
-    matrix:
-      linux:
-        vm_Image: 'Ubuntu-16.04'
-        conda: '/usr/share/miniconda'
-    maxParallel: 4
 
   steps:
-
-
 
 #First generate ssh key and add to github as a deploy key to forked_repo_home/settings/deploy_key
 
@@ -61,28 +48,20 @@ jobs:
      sshKeySecureFile: 'id_azure_rsa'
 
   - bash: |
-          ls
-    displayName: Display repository files
-
-  - bash: |
           echo "##vso[task.prependpath]$CONDA/bin"
-          ls
     displayName: Add conda to PATH
 
   - bash: |
       sudo chown -R $USER $CONDA
       conda update -y conda
-      ls
     displayName: updating conda and activating
 
   - bash: |
         sh ci-helpers/install_tardis_env.sh
-        ls
     displayName: 'Install TARDIS env'
 
   - bash: |
         sh ci-helpers/fetch_reference_data.sh
-        ls
     displayName: 'Fetch Reference Data'
 
 
