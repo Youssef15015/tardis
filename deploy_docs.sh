@@ -20,7 +20,7 @@ git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
 cd ..
 
 # Clean out existing contents
-rm -rf out/sphinx_docs/**/* || exit 0
+rm -rf out/sphinx_docs || exit 0
 
 # Pull from SOURCE_BRANCH again, just in case it is not the default branch
 #git pull
@@ -30,7 +30,7 @@ cd docs
 make html
 cd ../  
 
-mkdir -p out/sphinx_docs/
+mkdir out/sphinx_docs/
 mv -f docs/_build/html/* out/sphinx_docs/
 touch out/.nojekyll
 
