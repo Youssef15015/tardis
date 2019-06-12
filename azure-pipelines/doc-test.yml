@@ -61,9 +61,9 @@ jobs:
         sh ci-helpers/install_tardis_env.sh
     displayName: 'Install TARDIS env'
 
-#  - bash: |
-#        sh ci-helpers/fetch_reference_data.sh
-#    displayName: 'Fetch Reference Data'
+  - bash: |
+        sh ci-helpers/fetch_reference_data.sh
+    displayName: 'Fetch Reference Data'
 
 
 
