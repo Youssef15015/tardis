@@ -23,7 +23,7 @@ cd ..
 rm -rf out/sphinx_docs/**/* || exit 0
 
 # Pull from SOURCE_BRANCH again, just in case it is not the default branch
-git pull
+#git pull
 
 # Build the Sphinx documentation
 cd docs
