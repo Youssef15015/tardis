@@ -10,10 +10,10 @@ pr:
 # Variable we can refernece later
 variables:
   system.debug: 'true'
-  ref.data.home: '$(Agent.BuildDirectory)/tardis-refdata'
+#  ref.data.home: '$(Agent.BuildDirectory)/tardis-refdata'
 
-  ref.data.github.url: 'https://github.com/Youssef15015/tardis-refdata.git'
-  tardis.build.dir: $(Build.Repository.LocalPath)
+#  ref.data.github.url: 'https://github.com/Youssef15015/tardis-refdata.git'
+#  tardis.build.dir: $(Build.Repository.LocalPath)
 
 jobs:
 
@@ -57,13 +57,13 @@ jobs:
         sh ci-helpers/install_tardis_env.sh
     displayName: 'Install TARDIS env'
 
-  - bash: |
-        sh ci-helpers/fetch_reference_data.sh
-    displayName: 'Fetch Reference Data'
+#  - bash: |
+#        sh ci-helpers/fetch_reference_data.sh
+#    displayName: 'Fetch Reference Data'
 
 
 
-### See github.com/Youssef15015/tardis for docuemntation.
+### See github.com/Youssef15015/tardis for documentation.
   - bash: |
         source activate tardis
         bash deploy_docs.sh
