@@ -13,7 +13,7 @@ variables:
 #  ref.data.home: '$(Agent.BuildDirectory)/tardis-refdata'
 
 #  ref.data.github.url: 'https://github.com/Youssef15015/tardis-refdata.git'
-#  tardis.build.dir: $(Build.Repository.LocalPath)
+  tardis.build.dir: $(Build.Repository.LocalPath)
 
 jobs:
 
