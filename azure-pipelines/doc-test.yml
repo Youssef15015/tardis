@@ -21,7 +21,7 @@ jobs:
 
 - job: 'Testing_Build_Documentation'
   pool:
-    vmImage: 'Ubuntu-19.04'
+    vmImage: 'Linux-x64-2.153.0'
 
 
   steps:
