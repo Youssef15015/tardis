@@ -49,6 +49,10 @@ jobs:
     displayName: Add conda to PATH
 
   - bash: |
+          ls /usr/share/
+    displayName: Check contents of Vm
+
+  - bash: |
       sudo chown -R $USER $CONDA
       conda update -y conda
     displayName: updating conda and activating
