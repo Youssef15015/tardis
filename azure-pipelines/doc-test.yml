@@ -17,12 +17,9 @@ variables:
 
 jobs:
 
-
-
 - job: 'Testing_Build_Documentation'
   pool:
-    vmImage: 'Linux'
-
+    vmImage: 'Ubuntu-16.04'
 
   steps:
 
