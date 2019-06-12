@@ -19,9 +19,9 @@ jobs:
 
 
 
-- job: 'Testing Doc-Build on'
+- job: 'Testing_Build_Documentation'
   pool:
-    vmImage: $[variables.vm_Image]
+    vmImage: 'Ubuntu-19.04'
 
 
   steps:
