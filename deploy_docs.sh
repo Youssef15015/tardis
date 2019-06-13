@@ -3,7 +3,7 @@ set -e # Exit with nonzero exit code if anything fails
 
 # Build the documentation from the SOURCE_BRANCH
 # and push it to TARGET_BRANCH.
-SOURCE_BRANCH="azure"
+SOURCE_BRANCH="master"
 TARGET_BRANCH="gh-pages"
 
 # Save some useful information
@@ -20,17 +20,17 @@ git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
 cd ..
 
 # Clean out existing contents
-rm -rf out/sphinx_docs || exit 0
+rm -rf out/sphinx_docs/ || exit 0
 
-# Pull from SOURCE_BRANCH again, just in case it is not the default branch
-#git pull
+# Pull from SOURCE_BRANCH again
+git pull origin $SOURCE_BRANCH
 
 # Build the Sphinx documentation
 cd docs
 make html
 cd ../  
 
-mkdir out/sphinx_docs/
+mkdir -p out/sphinx_docs/
 mv -f docs/_build/html/* out/sphinx_docs/
 touch out/.nojekyll
 
@@ -55,3 +55,7 @@ fi
 git commit -m "Deploy to GitHub Pages: ${SHA}"
 git push $SSH_REPO $TARGET_BRANCH
 cd ..
+
+# See https://github.com/AMReX-Codes/amrex/blob/master/LICENSE for the license
+# deploy_docs.sh was modified from the original script in the AMReX code (https://github.com/AMReX-Codes/amrex), 
+# which is covered by the following license
