@@ -15,7 +15,7 @@ variables:
 jobs:
 # Title of job
 # Virtual machine selected from the available pools.
-- job: 'Build_Docuemntation'
+- job: 'Build_Documentation'
   pool:
     vmImage: 'Ubuntu-16.04'
 
