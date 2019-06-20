@@ -14,6 +14,9 @@ REPO=`git config remote.origin.url`
 SSH_REPO=${REPO/https:\/\/github.com\//git@github.com:}
 SHA=`git rev-parse --verify HEAD`
 
+#Go to my tardis git
+cd ~/Tardis/Tardis/tardis
+
 # Clone the existing gh-pages for this repo into out/
 git clone $REPO out
 cd out
