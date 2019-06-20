@@ -1,3 +1,6 @@
+# Modified from https://github.com/AMReX-Codes/amrex/blob/master/build_and_deploy.sh
+# and licensed according to BSD-3-Clause-LBNL (https://github.com/AMReX-Codes/amrex/blob/master/LICENSE).
+
 #!/bin/bash
 set -e # Exit with nonzero exit code if anything fails
 
@@ -15,23 +18,24 @@ SHA=`git rev-parse --verify HEAD`
 git clone $REPO out
 cd out
 
-# Create a new empty branch if gh-pages doesn't exist yet (should only happen on first deply)
+# Create a new empty branch if gh-pages doesn't exist yet (should only happen on first deploy)
 git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
-cd ..
 
 # Clean out existing contents
-rm -rf out/sphinx_docs/ || exit 0
+git rm -rf . || exit 0
+cd ..
 
 # Pull from SOURCE_BRANCH again
-git pull origin $SOURCE_BRANCH
+pwd
+git pull $SSH_REPO $SOURCE_BRANCH
 
 # Build the Sphinx documentation
 cd docs
 make html
 cd ../  
 
-mkdir -p out/sphinx_docs/
-mv -f docs/_build/html/* out/sphinx_docs/
+# Move it to the gh-pages branch
+mv -f docs/_build/html/* out/
 touch out/.nojekyll
 
 # Now let's go have some fun with the cloned repo
@@ -54,8 +58,3 @@ fi
 # Otherwise, commit and push
 git commit -m "Deploy to GitHub Pages: ${SHA}"
 git push $SSH_REPO $TARGET_BRANCH
-cd ..
-
-# See https://github.com/AMReX-Codes/amrex/blob/master/LICENSE for the license
-# deploy_docs.sh was modified from the original script in the AMReX code (https://github.com/AMReX-Codes/amrex), 
-# which is covered by the following license
