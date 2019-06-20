@@ -46,7 +46,7 @@ jobs:
 
 
   - bash: |
-          ls /usr/share/
+          ls
     displayName: Check contents of Vm
 
 
