@@ -18,7 +18,7 @@ SHA=`git rev-parse --verify HEAD`
 mkdir -p out
 cd out
 git init
-git remote add origin SHA || true
+git remote add origin $SHA || true
 
 # Create a new empty branch if gh-pages doesn't exist yet (should only happen on first deploy)
 git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
