@@ -24,7 +24,7 @@ git remote add origin $SSH_REPO || true
 git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
 
 # Clean out existing contents
-git rm -rf . || exit 0
+git rm -rf . || true
 cd ..
 
 # Pull from SOURCE_BRANCH again
@@ -59,4 +59,4 @@ fi
 
 # Otherwise, commit and push
 git commit -m "Deploy to GitHub Pages: ${SHA}"
-git push $SSH_REPO $TARGET_BRANCH
+git push -f $SSH_REPO $TARGET_BRANCH
