@@ -15,7 +15,7 @@ SSH_REPO=${REPO/https:\/\/github.com\//git@github.com:}
 SHA=`git rev-parse --verify HEAD`
 
 # Clone the existing gh-pages for this repo into out/
-mkdir out
+mkdir -p out
 cd out
 git init
 git remote add origin REPO
