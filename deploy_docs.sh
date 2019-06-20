@@ -14,12 +14,11 @@ REPO=`git config remote.origin.url`
 SSH_REPO=${REPO/https:\/\/github.com\//git@github.com:}
 SHA=`git rev-parse --verify HEAD`
 
-#Go to my tardis git
-cd ~/Tardis/Tardis/tardis
-
 # Clone the existing gh-pages for this repo into out/
-git clone $REPO out
+mkdir out
 cd out
+git init
+git remote add origin REPO
 
 # Create a new empty branch if gh-pages doesn't exist yet (should only happen on first deploy)
 git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
