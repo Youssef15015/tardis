@@ -6,7 +6,7 @@ set -e # Exit with nonzero exit code if anything fails
 
 # Build the documentation from the SOURCE_BRANCH
 # and push it to TARGET_BRANCH.
-SOURCE_BRANCH="master"
+SOURCE_BRANCH="azure"
 TARGET_BRANCH="gh-pages"
 
 # Save some useful information
@@ -15,17 +15,20 @@ SSH_REPO=${REPO/https:\/\/github.com\//git@github.com:}
 SHA=`git rev-parse --verify HEAD`
 
 # Clone the existing gh-pages for this repo into out/
-git clone $REPO out
+mkdir -p out
 cd out
+git init
+git remote add origin $SSH_REPO || true
 
 # Create a new empty branch if gh-pages doesn't exist yet (should only happen on first deploy)
 git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
 
 # Clean out existing contents
-git rm -rf . || exit 0
+git rm -rf . || true
 cd ..
 
 # Pull from SOURCE_BRANCH again
+pwd
 git pull $SSH_REPO $SOURCE_BRANCH
 
 # Build the Sphinx documentation
@@ -56,4 +59,4 @@ fi
 
 # Otherwise, commit and push
 git commit -m "Deploy to GitHub Pages: ${SHA}"
-git push $SSH_REPO $TARGET_BRANCH
+git push -f $SSH_REPO $TARGET_BRANCH
