@@ -6,7 +6,7 @@ set -e # Exit with nonzero exit code if anything fails
 
 # Build the documentation from the SOURCE_BRANCH
 # and push it to TARGET_BRANCH.
-SOURCE_BRANCH="master"
+SOURCE_BRANCH="docs_deployment"
 TARGET_BRANCH="gh-pages"
 
 # Save some useful information
