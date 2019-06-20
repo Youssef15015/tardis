@@ -19,7 +19,7 @@ jobs:
 
 - job: 'Testing_Build_Documentation'
   pool:
-    vmImage: 'Ubuntu-16.04'
+    name: Linux
 
   steps:
 
@@ -44,27 +44,10 @@ jobs:
      #sshPassphrase: # Optional $(Agent.TempDirectory)
      sshKeySecureFile: 'id_azure_rsa'
 
-  - bash: |
-          echo "##vso[task.prependpath]$CONDA/bin"
-    displayName: Add conda to PATH
 
   - bash: |
           ls /usr/share/
     displayName: Check contents of Vm
-
-  - bash: |
-      sudo chown -R $USER $CONDA
-      conda update -y conda
-    displayName: updating conda and activating
-
-  - bash: |
-        sh ci-helpers/install_tardis_env.sh
-    displayName: 'Install TARDIS env'
-
-  - bash: |
-        sh ci-helpers/fetch_reference_data.sh
-    displayName: 'Fetch Reference Data'
-
 
 
 ### See github.com/Youssef15015/tardis for documentation.
