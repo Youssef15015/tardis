@@ -19,7 +19,7 @@ jobs:
 
 - job: 'Testing_Build_Documentation'
   pool:
-    vmImage: Linux
+    name: Linux
 
   steps:
 
