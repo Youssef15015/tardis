@@ -10,7 +10,7 @@ jobs:
 
 - job: 'Test_Self_Hosted_Agent'
   pool:
-    name: Tardis
+    name: Linux
 
 
   steps:
