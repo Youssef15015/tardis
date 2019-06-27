@@ -87,8 +87,8 @@ It should look something like (should look something like [1]As3..=ssh-rsa ..) a
 
     ~/.ssh/known_hosts 
 
-**Alternatively, instead of this method recommended by azure, you can add all the github hosts by copying this output, starting from: github.com ssh-rs...**::
-[Default option suggested by wk]
+**Alternatively, instead of this method recommended by azure, you can add all the github hosts by copying this output, starting from: github.com ssh-rs...**
+[Default option suggested by wk]::
 
     ssh-keyscan -t rsa github.com
 
