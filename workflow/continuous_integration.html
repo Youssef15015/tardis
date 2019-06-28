@@ -303,6 +303,8 @@ It should look something like (should look something like [1]As3..=ssh-rsa ..) a
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">~/.</span><span class="n">ssh</span><span class="o">/</span><span class="n">known_hosts</span>
 </pre></div>
 </div>
+<p>It is generally advisable to leave a comment at the end of your added known host line to be able to identify it later, by simply inputting it at the end
+of the known host, such as: ([1]As3…=ssh-rsa AAA.. comment). If you already have it added from before, the portion after ssh-rsa should always start with AAAAB3NzaC1yc2EAAAABIwAAAQ…</p>
 <p><strong>Alternatively, instead of this method recommended by azure, you can add all the github hosts by copying this output, starting from: github.com ssh-rs…</strong>
 [Default option suggested by wk]:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span><span class="o">-</span><span class="n">keyscan</span> <span class="o">-</span><span class="n">t</span> <span class="n">rsa</span> <span class="n">github</span><span class="o">.</span><span class="n">com</span>
@@ -370,7 +372,7 @@ A task is a predefined script with a definitive purpose, such as downloading the
 <p>Download a secure file to a temporary location in the virtual machine:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>- task: InstallSSHKey@0
   inputs:
-    hostName: $(gh_host)
+    knownHostsEntry: $(gh_host)
     sshPublicKey: $(public_key)
     #sshPassphrase: # Optional - leave empty if it was left empty while generating the key.
     sshKeySecureFile: &#39;id_azure_rsa&#39;

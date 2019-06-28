@@ -87,6 +87,9 @@ It should look something like (should look something like [1]As3..=ssh-rsa ..) a
 
     ~/.ssh/known_hosts 
 
+It is generally advisable to leave a comment at the end of your added known host line to be able to identify it later, by simply inputting it at the end
+of the known host, such as: ([1]As3...=ssh-rsa AAA.. comment). If you already have it added from before, the portion after ssh-rsa should always start with AAAAB3NzaC1yc2EAAAABIwAAAQ...
+
 **Alternatively, instead of this method recommended by azure, you can add all the github hosts by copying this output, starting from: github.com ssh-rs...**
 [Default option suggested by wk]::
 
@@ -168,7 +171,7 @@ Download a secure file to a temporary location in the virtual machine::
 
       - task: InstallSSHKey@0
         inputs:
-          hostName: $(gh_host)
+          knownHostsEntry: $(gh_host)
           sshPublicKey: $(public_key)
           #sshPassphrase: # Optional - leave empty if it was left empty while generating the key.
           sshKeySecureFile: 'id_azure_rsa'
